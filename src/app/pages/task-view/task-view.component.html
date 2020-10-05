@@ -1,37 +1,43 @@
 <div class="centered-content">
-  <div class="task-manager-container">
+  <div *ngIf="!isError" class="task-manager-container">
     <div class="sidebar">
       <h1 class="title has-text-primary">Lists</h1>
       <div class="list-menu">
-        <a class="list-menu-item is-active">
-          <p>List 1</p>
-        </a>
-        <a class="list-menu-item">
-          <p>List 1</p>
-        </a>
-        <a class="list-menu-item">
-          <p>List 1</p>
+        <a class="list-menu-item" *ngFor="let list of lists" [routerLink]="['/lists', list._id]" routerLinkActive="is-active">
+          <!-- <div *ngIf="list._id == paramsId"> -->
+            <p> {{list.title}} </p>
+          <!-- </div> -->
         </a>
       </div>
 
-      <button class="button is-primary has-text-white">+ New List</button>
+      <button class="button is-primary has-text-white" routerLink="/new-list">+ New List</button>
 
     </div>
     <div class="task-list-container">
       <h1 class="title has-text-primary">Tasks</h1>
-      <div class="task">
-        <p>This is a task that hasa hasdf</p>
+      <div *ngFor="let task of tasks" class="task">
+        <p> {{task.title}} </p>
       </div>
       <div class="task completed">
-        <p>This is a task that hasa hasdf</p>
+        <p>This is a completed task</p>
       </div>
-      <div class="task">
-        <p>This is a task that hasa hasdf</p>
-      </div>
-      <div class="task">
-        <p>This is a task that hasa hasdf</p>
-      </div>
+
+      <button class="button circle-add-button is-medium" (click)="redirectToNewTask()"> +
+        <!-- <img src="/assets/img/plus-thin.svg"> -->
+        <!-- <embed src="/assets/plus-thin.svg" type="image/svg" width="20px" height="20px"> -->
+      </button>
     </div>
+  </div>
+  <div *ngIf="isError" class="error-container">
+    <article class="message is-danger">
+      <div class="message-header">
+        <p>Error</p>
+        <button class="delete" aria-label="delete" (click)="changeIsError()"></button>
+      </div>
+      <div class="message-body">
+        <strong>Select a list first</strong>
+      </div>
+    </article>
   </div>
 </div>
 

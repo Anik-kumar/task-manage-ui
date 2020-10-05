@@ -1,0 +1,30 @@
+
+<div class="centered-content">
+  <div class="modal-box">
+    <div>
+      <h1 class="title">Create New Task</h1>
+
+      <input #taskTitle type="text" class="input has-background-light is-medium" placeholder="Enter your task" >
+      <br><br>
+      <div class="buttons is-right">
+        <button class="button createBtn is-medium" (click)="createNewTask(taskTitle.value)">Create</button>
+        <button class="button is-danger is-light is-medium is-square" routerLink='/'>Cancel</button>
+      </div>
+    </div>
+
+    <div *ngIf="success">
+      <div class="notification is-success">
+        <button class="delete" (click)="changeSuccessFlag()"></button>
+        <strong>New task is created</strong>
+      </div>
+    </div>
+
+    <div *ngIf="isError">
+      <div class="notification is-danger">
+        <button class="delete" (click)="changeErrorFlag()"></button>
+        <strong> {{errorMessage}} </strong>
+      </div>
+    </div>
+
+  </div>
+</div>
