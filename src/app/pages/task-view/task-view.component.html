@@ -15,17 +15,27 @@
     </div>
     <div class="task-list-container">
       <h1 class="title has-text-primary">Tasks</h1>
-      <div *ngFor="let task of tasks" class="task">
-        <p> {{task.title}} </p>
-      </div>
-      <div class="task completed">
-        <p>This is a completed task</p>
+      <div *ngFor="let task of tasks" class="task" [ngClass]="{ 'completed': task.completed }">
+        <p (click)="completeTask(task)" > {{task.title}} </p>
+        <div>
+          <button class="button undoBtn is-small is-rounded ">
+            <img src="assets/undo.svg" >
+          </button>
+          <button class="button undoBtn is-small is-rounded ">
+            <img src="assets/edit.svg" >
+          </button>
+          <button class="button undoBtn is-small is-rounded ">
+            <img src="assets/delete.svg" >
+          </button>
+        </div>
+
       </div>
 
-      <button class="button circle-add-button is-medium" (click)="redirectToNewTask()"> +
-        <!-- <img src="/assets/img/plus-thin.svg"> -->
-        <!-- <embed src="/assets/plus-thin.svg" type="image/svg" width="20px" height="20px"> -->
-      </button>
+      <div class="add-btn-div">
+        <button class="button circle-add-button is-medium" routerLink="./new-task">
+          <img src="assets/plus-thin.svg">
+        </button>
+      </div>
     </div>
   </div>
   <div *ngIf="isError" class="error-container">
