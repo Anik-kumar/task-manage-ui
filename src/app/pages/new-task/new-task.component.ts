@@ -31,7 +31,6 @@ export class NewTaskComponent implements OnInit {
       this.taskService.createTask(this.listId, title).subscribe((res) => {
         //
         console.log(res);
-
         if(res != null) {
           if (res.hasOwnProperty('errors')) {
             this.isError = true;
@@ -54,6 +53,10 @@ export class NewTaskComponent implements OnInit {
           this.success = false;
           this.isError = true;
         }
+
+        setTimeout(() => {
+          this.router.navigate(['../'], { relativeTo: this.activeRoute });
+        }, 2000);
 
       });
     });

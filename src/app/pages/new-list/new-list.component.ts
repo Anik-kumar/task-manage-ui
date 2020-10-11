@@ -19,6 +19,7 @@ export class NewListComponent implements OnInit {
       console.log(res);
       // res._id
       // this.router.navigateByUrl('/lists');
+      this.router.navigate(['/lists', res._id]);
     });
   }
 
